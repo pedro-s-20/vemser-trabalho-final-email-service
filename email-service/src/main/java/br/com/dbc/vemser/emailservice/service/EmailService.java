@@ -1,8 +1,6 @@
 package br.com.dbc.vemser.emailservice.service;
 
-import br.com.dbc.vemser.trabalhofinal.entity.AgendamentoEntity;
-import br.com.dbc.vemser.trabalhofinal.entity.TipoEmail;
-import br.com.dbc.vemser.trabalhofinal.entity.UsuarioEntity;
+import br.com.dbc.vemser.emailservice.dto.TipoEmail;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -34,7 +32,7 @@ public class EmailService {
 
     // USUÁRIO
 
-    public void sendEmailUsuario(UsuarioEntity usuario, TipoEmail tipoEmail, Integer codigo) throws MessagingException, TemplateException, IOException {
+    public void sendEmailUsuario(DTO) throws MessagingException, TemplateException, IOException {
         MimeMessageHelper mimeMessageHelper = buildEmail(usuario.getEmail(), tipoEmail);
         if(tipoEmail == TipoEmail.USUARIO_REDEFINIR_SENHA){
             mimeMessageHelper.setText(getUsuarioTemplateRedefinicao(usuario, codigo), true);
@@ -45,7 +43,7 @@ public class EmailService {
         emailSender.send(mimeMessageHelper.getMimeMessage());
     }
 
-    public MimeMessageHelper buildEmail(String email, TipoEmail tipoEmail) throws MessagingException {
+    public MimeMessageHelper buildEmail(DTO) throws MessagingException {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
@@ -55,7 +53,7 @@ public class EmailService {
         return mimeMessageHelper;
     }
 
-    public String getUsuarioTemplate(UsuarioEntity usuario, TipoEmail tipo) throws IOException, TemplateException {
+    public String getUsuarioTemplate(DTO) throws IOException, TemplateException {
         Map<String, Object> dados = new HashMap<>();
         dados.put("email", from);
         dados.put("usuario", usuario);
@@ -73,7 +71,7 @@ public class EmailService {
         return FreeMarkerTemplateUtils.processTemplateIntoString(template, dados);
     }
 
-    public String getUsuarioTemplateRedefinicao(UsuarioEntity usuario, Integer codigo) throws IOException, TemplateException {
+    public String getUsuarioTemplateRedefinicao(DTO) throws IOException, TemplateException {
         Map<String, Object> dados = new HashMap<>();
         dados.put("email", from);
         dados.put("usuario", usuario);
@@ -85,14 +83,14 @@ public class EmailService {
 
     // AGENDAMENTO
 
-    public void sendEmailAgendamento(UsuarioEntity usuario, AgendamentoEntity agendamento, TipoEmail tipoEmail) throws MessagingException, TemplateException, IOException {
+    public void sendEmailAgendamento(DTO) throws MessagingException, TemplateException, IOException {
         MimeMessageHelper mimeMessageHelper = buildEmail(usuario.getEmail(), tipoEmail);
         mimeMessageHelper.setText(getAgendamentoTemplate(agendamento, tipoEmail), true);
 
         emailSender.send(mimeMessageHelper.getMimeMessage());
     }
 
-    public String getAgendamentoTemplate(AgendamentoEntity agendamento, TipoEmail tipo) throws IOException, TemplateException {
+    public String getAgendamentoTemplate(DTO) throws IOException, TemplateException {
         Template template;
         Map<String, Object> dados = new HashMap<>();
         dados.put("agendamento", agendamento);
@@ -124,14 +122,14 @@ public class EmailService {
     }
 
     // CLIENTE
-    public void sendEmailCliente(UsuarioEntity usuario, TipoEmail tipoEmail, String codigo) throws MessagingException, TemplateException, IOException {
+    public void sendEmailCliente(DTO) throws MessagingException, TemplateException, IOException {
         MimeMessageHelper mimeMessageHelper = buildEmail(usuario.getEmail(), tipoEmail);
         mimeMessageHelper.setText(getClienteTemplateSolicitacao(usuario, codigo, tipoEmail), true);
 
         emailSender.send(mimeMessageHelper.getMimeMessage());
     }
 
-    public String getClienteTemplateSolicitacao(UsuarioEntity usuario, String codigo, TipoEmail tipoEmail) throws IOException, TemplateException {
+    public String getClienteTemplateSolicitacao(DTO) throws IOException, TemplateException {
         Template template;
         Map<String, Object> dados = new HashMap<>();
         dados.put("email", from);
