@@ -29,7 +29,7 @@ public class KafkaConsumerConfig {
     @Value(value = "${spring.kafka.consumer.auto-offset-reset}")
     private String autoOffsetReset;
 
-    @Value(value = "${kafka.client-id1}")
+    @Value(value = "${kafka.client-id}")
     private String clientId;
     @Value(value = "${spring.kafka.consumer.max.poll.records}")
     private String pollRecords;

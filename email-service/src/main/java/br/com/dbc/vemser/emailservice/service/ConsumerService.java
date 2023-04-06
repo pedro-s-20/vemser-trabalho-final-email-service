@@ -31,7 +31,7 @@ public class ConsumerService {
     @KafkaListener(
             topics = "${kafka.topic}",
             groupId = "${spring.kafka.consumer.group-id}",
-            topicPartitions = {@TopicPartition(topic = "${kafka.topic}", partitions = {"1"})},
+            topicPartitions = {@TopicPartition(topic = "${kafka.topic}", partitions = {"0"})},
             containerFactory = "listenerContainerFactory1"
     )
     public void consumeUsuario(@Payload String mensagem,
@@ -53,7 +53,7 @@ public class ConsumerService {
     @KafkaListener(
             topics = "${kafka.topic}",
             groupId = "${spring.kafka.consumer.group-id}",
-            topicPartitions = {@TopicPartition(topic = "${kafka.topic}", partitions = {"2"})},
+            topicPartitions = {@TopicPartition(topic = "${kafka.topic}", partitions = {"1"})},
             containerFactory = "listenerContainerFactory1"
     )
     public void consumeAgendamento(@Payload String mensagem,
@@ -75,7 +75,7 @@ public class ConsumerService {
     @KafkaListener(
             topics = "${kafka.topic}",
             groupId = "${spring.kafka.consumer.group-id}",
-            topicPartitions = {@TopicPartition(topic = "${kafka.topic}", partitions = {"3"})},
+            topicPartitions = {@TopicPartition(topic = "${kafka.topic}", partitions = {"2"})},
             containerFactory = "listenerContainerFactory1"
     )
     public void consumeSolicitacao(@Payload String mensagem,
