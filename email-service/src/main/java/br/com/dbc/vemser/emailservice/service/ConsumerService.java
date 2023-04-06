@@ -5,6 +5,7 @@ import br.com.dbc.vemser.emailservice.dto.SolicitacaoEmailDTO;
 import br.com.dbc.vemser.emailservice.dto.UsuarioEmailDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.KafkaException;
@@ -15,7 +16,6 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
-import freemarker.template.TemplateException;
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.time.LocalDateTime;
