@@ -30,7 +30,7 @@ public class KafkaConsumerConfig {
     private String autoOffsetReset;
 
     @Value(value = "${kafka.client-id1}")
-    private String clientId1;
+    private String clientId;
     @Value(value = "${spring.kafka.consumer.max.poll.records}")
     private String pollRecords;
 
@@ -53,7 +53,7 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, keyDeserializer);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, valueDeserializer);
-        props.put(ConsumerConfig.CLIENT_ID_CONFIG, clientId1);
+        props.put(ConsumerConfig.CLIENT_ID_CONFIG, clientId);
         props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, pollRecords);
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, autoOffsetReset);
         props.put("sasl.mechanism", mechanism);
